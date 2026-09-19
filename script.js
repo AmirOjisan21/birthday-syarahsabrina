@@ -12,10 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const chapterData = [
     { caption: "Happy Birthday, MY WIFE 💍", rot: -3, scale: 1 },
-    { caption: "Hospital Sultanah Aminah, JB 📍", rot: 3, scale: 0.95 },
-    { caption: "Miles apart, always connected ✈️", rot: -2, scale: 0.92 },
-    { caption: "blekkkkkk", rot: 2, scale: 0.95 },
-    { caption: "A few of your favorite things 🌷 (I'm your Favorite person!)", rot: -4, scale: 0.95 },
+    { caption: "Original JB 📍", rot: 3, scale: 0.95 },
+    { caption: "Always connected ✈️", rot: -2, scale: 0.92 },
+    { caption: "Holy Shit She's so pretty 😭🙏", rot: 2, scale: 0.95 },
+    { caption: "A few of your favorite things 🌷 (I'm your Favorite person😛)", rot: -4, scale: 0.95 },
     { caption: "Sayangi Dirimu Atau Aku yang Sayangi Kamu 😚", rot: 0, scale: 1.05 }
   ];
 
@@ -125,21 +125,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const tabMedia = {
     born: {
-      img1: "images/MMG.png",
+      img1: "images/hospme.png",
       lbl1: "Sg. Buloh (Me)",
-      img2: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=300&q=80",
+      img2: "images/hospital.JPG",
       lbl2: "HSA JB (You)"
     },
     grew: {
-      img1: "images/MMG.png",
+      img1: "images/fairfax.png",
       lbl1: "Fairfax, USA (Me)",
-      img2: "images/MMG.png",
+      img2: "images/johorbaru.png",
       lbl2: "Johor Bahru (You)"
     },
     now: {
-      img1: "images/MMG.png",
+      img1: "images/UPSIi.png",
       lbl1: "UPSI Campus (Me)",
-      img2: "images/MMG.png",
+      img2: "images/UTHM.jpg",
       lbl2: "UTHM Campus (You)"
     }
   };
@@ -323,7 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* -------------------------------------------------------------
-     5. Background Music Toggle (Love is in the Air, Pt. 2)
+     
   ------------------------------------------------------------- */
   const musicToggle = document.getElementById("musicToggle");
   const bgMusic = document.getElementById("bgMusic");
@@ -335,7 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
       bgMusic.play().then(() => {
         isPlaying = true;
         musicToggle.classList.add("playing");
-        musicText.textContent = "Love is in the Air, Pt. 2 🎵";
+        musicText.textContent = "You're Gonna Live Forever in Me 🎵";
       }).catch(err => console.log("Audio block:", err));
     } else {
       bgMusic.pause();
@@ -408,7 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Copy to clipboard with instant button feedback
+
     copyCodeBtn.addEventListener("click", () => {
       navigator.clipboard.writeText(voucherCodeText.textContent.trim()).then(() => {
         copyCodeBtn.textContent = "Copied! ✓";
@@ -418,6 +418,60 @@ document.addEventListener("DOMContentLoaded", () => {
           copyCodeBtn.style.background = "#000000";
         }, 2000);
       });
+    });
+  }
+
+  // Blooming Tulip Modal Handler
+const openTulipBtn = document.getElementById('openTulipBtn');
+  const closeTulipBtn = document.getElementById('closeTulipBtn');
+  const tulipModal = document.getElementById('tulipModal');
+
+  if (openTulipBtn && tulipModal) {
+    openTulipBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      tulipModal.classList.add('active');
+    });
+
+    if (closeTulipBtn) {
+      closeTulipBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        tulipModal.classList.remove('active');
+      });
+    }
+
+    tulipModal.addEventListener('click', (e) => {
+      if (e.target === tulipModal) {
+        tulipModal.classList.remove('active');
+      }
+    });
+  }
+
+  /* -------------------------------------------------------------
+     9. Urgent Love Letter Scrollable Modal Handler
+  ------------------------------------------------------------- */
+  const openUrgentBtn = document.getElementById('openUrgentLetterBtn');
+  const closeUrgentBtn = document.getElementById('closeUrgentLetterBtn');
+  const urgentModal = document.getElementById('urgentLetterModal');
+
+  if (openUrgentBtn && urgentModal) {
+    openUrgentBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      urgentModal.classList.add('active');
+    });
+
+    if (closeUrgentBtn) {
+      closeUrgentBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        urgentModal.classList.remove('active');
+      });
+    }
+
+    urgentModal.addEventListener('click', (e) => {
+      if (e.target === urgentModal) {
+        urgentModal.classList.remove('active');
+      }
     });
   }
 

@@ -1668,3 +1668,367 @@ body {
   transform: rotate(10deg);
   z-index: 5;
 }
+/* --- Bloom Trigger Button on Polaroid --- */
+.bloom-trigger-btn {
+  display: block;          
+  margin: 12px auto 4px;  
+  background: var(--burgundy);
+  color: #fff;
+  border: none;
+  font-family: 'Caveat', cursive;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(107, 20, 38, 0.25);
+  transition: transform 0.2s ease, background 0.2s ease;
+  position: relative;
+  z-index: 25;            
+}
+
+.bloom-trigger-btn:hover {
+  transform: scale(1.08);
+  background: var(--burgundy-dark);
+}
+
+/* --- Modal Overlay & Card --- */
+.tulip-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 20, 26, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.tulip-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tulip-modal-card {
+  background: #fffcf8;
+  width: 90%;
+  max-width: 360px;
+  padding: 30px 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.25);
+  text-align: center;
+  position: relative;
+  transform: scale(0.85);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tulip-modal-overlay.active .tulip-modal-card {
+  transform: scale(1);
+}
+
+.tulip-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #8c7a70;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.bloom-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--burgundy);
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+
+.bloom-caption {
+  font-family: 'Caveat', cursive;
+  font-size: 1.25rem;
+  color: #55443d;
+  margin-top: 10px;
+}
+
+/* --- Blooming SVG Animation --- */
+.tulip-animation-box {
+  width: 170px;
+  height: 220px;
+  margin: 0 auto;
+}
+
+.blooming-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* 1. Stem Growth */
+.tulip-stem {
+  stroke: #5b8c5a;
+  stroke-width: 5;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+
+.tulip-modal-overlay.active .tulip-stem {
+  animation: growStem 1.2s ease forwards 0.2s;
+}
+
+@keyframes growStem {
+  to { stroke-dashoffset: 0; }
+}
+
+/* 2. Leaves Unfurling */
+.tulip-leaf {
+  fill: #7da874;
+  stroke: #4d7a4c;
+  stroke-width: 1.5;
+  transform-origin: 100px 170px;
+  opacity: 0;
+  transform: scale(0.2);
+}
+
+.tulip-modal-overlay.active .leaf-left {
+  animation: leafBloom 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 0.8s;
+}
+
+.tulip-modal-overlay.active .leaf-right {
+  animation: leafBloom 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 1s;
+}
+
+@keyframes leafBloom {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 3. Flower Petals Opening */
+.tulip-head {
+  transform-origin: 100px 85px;
+  opacity: 0;
+  transform: scale(0.1);
+}
+
+.tulip-modal-overlay.active .tulip-head {
+  animation: popHead 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 1.2s;
+}
+
+@keyframes popHead {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.petal {
+  stroke: #500a18;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.petal-center { fill: #8a152d; }
+
+.petal-left {
+  fill: #a8233f;
+  transform-origin: 100px 85px;
+}
+
+.petal-right {
+  fill: #c43252;
+  transform-origin: 100px 85px;
+}
+
+.tulip-modal-overlay.active .petal-left {
+  animation: petalOpenLeft 1s ease forwards 1.5s;
+}
+
+.tulip-modal-overlay.active .petal-right {
+  animation: petalOpenRight 1s ease forwards 1.5s;
+}
+
+@keyframes petalOpenLeft {
+  to { transform: rotate(-14deg); }
+}
+
+@keyframes petalOpenRight {
+  to { transform: rotate(14deg); }
+}
+
+/* =========================================================
+   URGENT SCROLLABLE LETTER MODAL & BUTTON
+   ========================================================= */
+
+/* Urgent Trigger Button */
+.urgent-letter-btn {
+  display: block;
+  margin-top: 18px;
+  background: var(--burgundy);
+  color: #ffffff;
+  border: 1.5px dashed rgba(255, 255, 255, 0.4);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(107, 20, 38, 0.25);
+  transition: transform 0.2s ease, background 0.2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.urgent-letter-btn:hover {
+  transform: translateY(-2px);
+  background: var(--burgundy-dark);
+}
+
+/* Modal Overlay */
+.letter-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(35, 15, 20, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100; /* Sits higher than all cards and stage */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  padding: 20px;
+}
+
+.letter-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Modal Card (Styled like vintage stationery paper) */
+.letter-modal-card {
+  background: #fffdf9;
+  width: min(580px, 94vw);
+  max-height: 85vh; /* Prevents overflow off the screen */
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  position: relative;
+  border-left: 4px solid var(--burgundy);
+  transform: scale(0.92);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.letter-modal-overlay.active .letter-modal-card {
+  transform: scale(1);
+}
+
+.letter-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #8c7a70;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 10;
+}
+
+.letter-close-btn:hover {
+  color: var(--burgundy);
+}
+
+.top-center {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+}
+
+.letter-modal-header {
+  padding: 28px 26px 12px;
+  border-bottom: 1px dashed rgba(107, 20, 38, 0.15);
+  position: relative;
+}
+
+.urgent-modal-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--burgundy-dark);
+  font-size: 1.5rem;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
+.urgent-date {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* Scrollable Container with Custom Aesthetic Scrollbar */
+.scrollable-letter-content {
+  padding: 20px 26px 28px;
+  overflow-y: auto;
+  font-family: 'Caveat', cursive;
+  font-size: 1.45rem;
+  line-height: 1.55;
+  color: #2b2220;
+}
+
+.scrollable-letter-content .salutation {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--burgundy);
+  margin-bottom: 12px;
+}
+
+.scrollable-letter-content p {
+  margin-bottom: 14px;
+}
+
+.urgent-signoff {
+  margin-top: 24px;
+  font-family: 'Caveat', cursive;
+}
+
+.urgent-signoff p {
+  margin-bottom: 2px;
+  font-size: 1.35rem;
+  color: #55443d;
+}
+
+.urgent-signoff span {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--burgundy);
+}
+
+/* Custom Scrollbar for the Letter */
+.scrollable-letter-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-letter-content::-webkit-scrollbar-track {
+  background: rgba(107, 20, 38, 0.04);
+}
+
+.scrollable-letter-content::-webkit-scrollbar-thumb {
+  background: rgba(107, 20, 38, 0.25);
+  border-radius: 4px;
+}
+
+.scrollable-letter-content::-webkit-scrollbar-thumb:hover {
+  background: var(--burgundy);
+}
